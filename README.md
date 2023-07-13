@@ -2,12 +2,12 @@
 ## Mini Ecommerce
 
 ## Setup Database
-- Buatlah sebuah database dengan nama `trial-class-go`
+- Buatlah sebuah database dengan nama `workshop-class-go`
 - Jalankan sql query pada file `migrations/create_tables.sql` lalu `migrations/seed_products.sql`
 - Ubah dsn database pada config/db.go line 14, sesuaikan dengan confgi database dan database yang telah dibuat
 ```go
-// contoh untuk db dengan nama trial-class-go
-host=localhost user=postgres password=postgres dbname=trial-class-go port=5432
+// contoh untuk db dengan nama workshop-class-go
+host=localhost user=postgres password=postgres dbname=workshop-class-go port=5432
 ```
 
 ## How to Setup Server API
@@ -115,7 +115,7 @@ go get -u github.com/alecthomas/template
 ```
 selanjutnya kita perlu menambahkan comment pada file main.go kita berupa informasi-informasi terkait aplikasi kita yang akan ditampilkan di dokumentasi swagger
 ```go
-// @title           Trial Class Mini Ecommerce
+// @title           Workshop Mini Ecommerce
 // @version         1.0
 // @description     Dokomentasi REST API project Mini Ecommerce II
 
@@ -132,7 +132,7 @@ r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 ```
 dan menjalankan perintah `swag init` pada terminal jangan lupa juga untuk memastikan semua package sudah terimport, dengan menambahkan code dibawah pada bagian import di main.go
 ```go
-_ "trial-class-api/docs"
+_ "workshop-class-api/docs"
 swaggerFiles "github.com/swaggo/files"
 ginSwagger "github.com/swaggo/gin-swagger"
 ```
@@ -214,11 +214,11 @@ go get gopkg.in/gomail.v2
 Dan lanjutkan untuk melakukan implementasi mengirim email sesuai dengan [dokumentasi](https://pkg.go.dev/gopkg.in/gomail.v2?utm_source=godoc#example-package) atau kurang lebih akan seperti
 ```go
 m := gomail.NewMessage()
-m.SetHeader("From", "trial-class@mail.com")
+m.SetHeader("From", "workshop-class@mail.com")
 m.SetHeader("To", emailRequest.Email) // emailRequest didapat dari body yang dikirim oleh service utama
 
-m.SetHeader("Subject", "Trial Class Order")
-m.SetBody("text/html", fmt.Sprintf("terima kasih telah melakukan order pada mini ecommerce trial mini class, product dengan nama %s akan dikirimkan ke alamat %s secepatnya", emailRequest.ProductName, emailRequest.Address)) // emailRequest didapat dari body yang dikirim oleh service utama
+m.SetHeader("Subject", "Workshop Order")
+m.SetBody("text/html", fmt.Sprintf("terima kasih telah melakukan order pada mini ecommerce workshop mini class, product dengan nama %s akan dikirimkan ke alamat %s secepatnya", emailRequest.ProductName, emailRequest.Address)) // emailRequest didapat dari body yang dikirim oleh service utama
 
 d := gomail.NewDialer("smtp.example.com", 587, "user", "123456")
 
